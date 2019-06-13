@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MvcSakilaCore.Models;
+using kedzior.io.ConnectionStringConverter;
 
 namespace MvcSakilaCore
 {
@@ -34,7 +35,9 @@ namespace MvcSakilaCore
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Configuration.GetConnectionString("DefaultConnection"))));
+            //services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Configuration.GetConnectionString("DefaultConnection"))));
+            string standard_connstr = AzureMySQL.ToMySQLStandard(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"));
+            services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(standard_connstr)));
             //services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"))));
         }
 
