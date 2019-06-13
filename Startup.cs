@@ -34,8 +34,8 @@ namespace MvcSakilaCore
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"))));
-            //services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Configuration.GetConnectionString("DefaultConnection"))));
+            //services.Add(new ServiceDescriptor(typeof(SakilaContext), new SakilaContext(Environment.GetEnvironmentVariable("MYSQLCONNSTR_localdb"))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
